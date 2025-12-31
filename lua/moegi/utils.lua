@@ -42,7 +42,9 @@ local function normalize_base(color)
     return '#000000'
   end
 
-  local hex = color:match('^#%x%x%x%x%x%x$')
+  color = color:gsub('^#+', '#')
+
+  local hex = color:match('^#(%x%x%x%x%x%x)$')
   if hex then
     return '#' .. hex:upper()
   end
@@ -68,7 +70,7 @@ function M.normalize_color(color, fallback)
     return color
   end
 
-  local hex = color:match('^#%x%x%x%x%x%x$')
+  local hex = color:match('^#(%x%x%x%x%x%x)$')
   if hex then
     return '#' .. hex:upper()
   end

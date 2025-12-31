@@ -55,9 +55,9 @@ local function highlight(group, values)
   vim.api.nvim_set_hl(0, group, values)
 end
 
-local function apply_highlights(palette, options)
-  local bg = options.transparent and 'NONE' or palette.background
-  local fallback = options.transparent and palette.line or palette.background
+local function apply_highlights(palette, cfg)
+  local bg = cfg.transparent and 'NONE' or palette.background
+  local fallback = cfg.transparent and palette.line or palette.background
 
   local function norm(color)
     return utils.normalize_color(color, fallback)
@@ -85,18 +85,18 @@ local function apply_highlights(palette, options)
 
   highlight('Whitespace', { fg = norm(palette.comment) })
   highlight('NonText', { fg = norm(palette.comment) })
-  highlight('Comment', { fg = norm(palette.comment), italic = options.italics.comments })
+  highlight('Comment', { fg = norm(palette.comment), italic = cfg.italics.comments })
   highlight('Todo', { fg = norm(palette.accent), bold = true })
 
   highlight('Identifier', { fg = norm(palette.foreground) })
-  highlight('Function', { fg = norm(palette.func), italic = options.italics.functions })
-  highlight('Statement', { fg = norm(palette.keyword), italic = options.italics.keywords })
-  highlight('Keyword', { fg = norm(palette.keyword), italic = options.italics.keywords })
+  highlight('Function', { fg = norm(palette.func), italic = cfg.italics.functions })
+  highlight('Statement', { fg = norm(palette.keyword), italic = cfg.italics.keywords })
+  highlight('Keyword', { fg = norm(palette.keyword), italic = cfg.italics.keywords })
   highlight('Operator', { fg = norm(palette.operator) })
   highlight('Type', { fg = norm(palette.type) })
   highlight('Constant', { fg = norm(palette.constant) })
   highlight('Number', { fg = norm(palette.number) })
-  highlight('String', { fg = norm(palette.string), italic = options.italics.strings })
+  highlight('String', { fg = norm(palette.string), italic = cfg.italics.strings })
   highlight('Character', { fg = norm(palette.string) })
   highlight('Boolean', { fg = norm(palette.number) })
 
@@ -146,15 +146,15 @@ local function apply_highlights(palette, options)
   highlight('GitSignsChange', { fg = norm(palette.warning) })
   highlight('GitSignsDelete', { fg = norm(palette.error) })
 
-  highlight('@comment', { fg = norm(palette.comment), italic = options.italics.comments })
-  highlight('@variable', { fg = norm(palette.variable), italic = options.italics.variables })
-  highlight('@function', { fg = norm(palette.func), italic = options.italics.functions })
-  highlight('@parameter', { fg = norm(palette.variable), italic = options.italics.variables })
+  highlight('@comment', { fg = norm(palette.comment), italic = cfg.italics.comments })
+  highlight('@variable', { fg = norm(palette.variable), italic = cfg.italics.variables })
+  highlight('@function', { fg = norm(palette.func), italic = cfg.italics.functions })
+  highlight('@parameter', { fg = norm(palette.variable), italic = cfg.italics.variables })
   highlight('@type', { fg = norm(palette.type) })
   highlight('@constant', { fg = norm(palette.constant) })
   highlight('@number', { fg = norm(palette.number) })
   highlight('@string', { fg = norm(palette.string) })
-  highlight('@keyword', { fg = norm(palette.keyword), italic = options.italics.keywords })
+  highlight('@keyword', { fg = norm(palette.keyword), italic = cfg.italics.keywords })
   highlight('@operator', { fg = norm(palette.operator) })
   highlight('@tag', { fg = norm(palette.keyword) })
 end
@@ -187,7 +187,7 @@ function M.load(name)
   vim.g.colors_name = 'moegi'
 
   set_terminal_colors(current)
-  apply_highlights(current, config.italics)
+  apply_highlights(current, config)
 end
 
 return M
