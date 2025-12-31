@@ -31,3 +31,4 @@ If you spot inconsistencies with the upstream VSCode theme or have ideas for imp
 ## Extras
 - Ghostty terminal themes: `extras/ghostty/*.conf` (https://ghostty.org/).
 - WezTerm terminal themes: `extras/wezterm/*.lua` (https://wezterm.org/index.html).
+- Zed editor theme: `extras/zed/` (https://zed.dev/) — put the file in `$HOME/.config/zed/themes/` and reload Zed to activate the theme.
